@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin:auto;background:#ffffff;display:block;z-index:1;position:relative" width="1388" height="1080" preserveAspectRatio="xMidYMid" viewBox="0 0 1388 1080">
+<g transform="translate(694,540) scale(1,1) translate(-694,-540)"><defs>
+  <linearGradient id="lg-0" x1="0" x2="1" y1="0" y2="0">
+  <stop stop-color="#e15c64" offset="0.25"></stop>
+  <stop stop-color="#f7b26a" offset="0.75"></stop>
+  </linearGradient>
+</defs>
+<path d="M0 -162 c131 324 1257 -324 1388 0
+L1388 399.6 c563 -324 -1951 324 -1388 0Z" fill="url(#lg-0)" stroke="none">
+ <animate attributeName="d" repeatCount="indefinite" dur="2s" begin="0s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" keyTimes="0;0.5;1" values="M0 -162 c131 324 1257 -324 1388 0
+L1388 399.6 c563 -324 -1951 324 -1388 0Z;M0 -162 c563 324 825 -324 1388 0
+L1388 399.6 c131 -324 -1519 324 -1388 0Z;M0 -162 c131 324 1257 -324 1388 0
+L1388 399.6 c563 -324 -1951 324 -1388 0Z"></animate>
+</path><defs>
+  <linearGradient id="lg-1" x1="0" x2="1" y1="0" y2="0">
+  <stop stop-color="#f3ed9d" offset="0.25"></stop>
+  <stop stop-color="#f7b26a" offset="0.75"></stop>
+  </linearGradient>
+</defs>
+<path d="M0 118.80000000000001 c563 324 825 -324 1388 0
+L1388 680.4 c131 -324 -1519 324 -1388 0Z" fill="url(#lg-1)" stroke="none">
+ <animate attributeName="d" repeatCount="indefinite" dur="2s" begin="-0.4s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" keyTimes="0;0.5;1" values="M0 118.80000000000001 c563 324 825 -324 1388 0
+L1388 680.4 c131 -324 -1519 324 -1388 0Z;M0 118.80000000000001 c131 324 1257 -324 1388 0
+L1388 680.4 c563 -324 -1951 324 -1388 0Z;M0 118.80000000000001 c563 324 825 -324 1388 0
+L1388 680.4 c131 -324 -1519 324 -1388 0Z"></animate>
+</path><defs>
+  <linearGradient id="lg-2" x1="0" x2="1" y1="0" y2="0">
+  <stop stop-color="#f3ed9d" offset="0.25"></stop>
+  <stop stop-color="#a4bd81" offset="0.75"></stop>
+  </linearGradient>
+</defs>
+<path d="M0 399.6 c131 324 1257 -324 1388 0
+L1388 961.2 c563 -324 -1951 324 -1388 0Z" fill="url(#lg-2)" stroke="none">
+ <animate attributeName="d" repeatCount="indefinite" dur="2s" begin="-0.8s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" keyTimes="0;0.5;1" values="M0 399.6 c131 324 1257 -324 1388 0
+L1388 961.2 c563 -324 -1951 324 -1388 0Z;M0 399.6 c563 324 825 -324 1388 0
+L1388 961.2 c131 -324 -1519 324 -1388 0Z;M0 399.6 c131 324 1257 -324 1388 0
+L1388 961.2 c563 -324 -1951 324 -1388 0Z"></animate>
+</path><defs>
+  <linearGradient id="lg-3" x1="0" x2="1" y1="0" y2="0">
+  <stop stop-color="#a0d7d2" offset="0.25"></stop>
+  <stop stop-color="#a4bd81" offset="0.75"></stop>
+  </linearGradient>
+</defs>
+<path d="M0 680.4 c563 324 825 -324 1388 0
+L1388 1242 c131 -324 -1519 324 -1388 0Z" fill="url(#lg-3)" stroke="none">
+ <animate attributeName="d" repeatCount="indefinite" dur="2s" begin="-1.2s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" keyTimes="0;0.5;1" values="M0 680.4 c563 324 825 -324 1388 0
+L1388 1242 c131 -324 -1519 324 -1388 0Z;M0 680.4 c131 324 1257 -324 1388 0
+L1388 1242 c563 -324 -1951 324 -1388 0Z;M0 680.4 c563 324 825 -324 1388 0
+L1388 1242 c131 -324 -1519 324 -1388 0Z"></animate>
+</path><defs>
+  <linearGradient id="lg-4" x1="0" x2="1" y1="0" y2="0">
+  <stop stop-color="#a0d7d2" offset="0.25"></stop>
+  <stop stop-color="#8db1da" offset="0.75"></stop>
+  </linearGradient>
+</defs>
+<path d="M0 961.2 c131 324 1257 -324 1388 0
+L1388 1522.8 c563 -324 -1951 324 -1388 0Z" fill="url(#lg-4)" stroke="none">
+ <animate attributeName="d" repeatCount="indefinite" dur="2s" begin="-1.6s" calcMode="spline" keySplines="0.5 0 0.5 1;0.5 0 0.5 1" keyTimes="0;0.5;1" values="M0 961.2 c131 324 1257 -324 1388 0
+L1388 1522.8 c563 -324 -1951 324 -1388 0Z;M0 961.2 c563 324 825 -324 1388 0
+L1388 1522.8 c131 -324 -1519 324 -1388 0Z;M0 961.2 c131 324 1257 -324 1388 0
+L1388 1522.8 c563 -324 -1951 324 -1388 0Z"></animate>
+</path></g>
+</svg>

@@ -1,0 +1,14 @@
+{
+  "style": [
+    {"name": "bg1.svg", "color":"red"},
+    {"name": "bg2.svg", "color":"red"},
+    {"name": "bg3.svg", "color":"red"},
+    {"name": "bg4.svg", "color":"red"},
+    {"name": "bg5.svg", "color":"red"},
+    {"name": "bg6.svg", "color":"red"},
+    {"name": "bg7.svg", "color":"red"},
+    {"name": "bg8.svg", "color":"red"},
+    {"name": "bg9.svg", "color":"red"},
+    {"name": "bg10.svg", "color":"red"}
+  ]
+}

@@ -1,0 +1,149 @@
+@border: 10px;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.flex-center(@type: relatice) {
+  position: @type;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.self-center(@pos: absolute) {
+  position: @pos;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.self-fill(@pos: absolute) {
+  position: @pos;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wh-100{
+  width: 100%;
+  height: 100%;
+}
+.h-100 {
+  height: 100%;
+}
+.w-100{
+  width: 100%;
+}
+.br {
+  border-radius: @border;
+}
+
+.blur-bg {
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.self-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mainbg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.15;
+  z-index: -1;
+  inset: 0px;
+  filter: blur(10px);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.layout-52:after {
+  padding-top: 35%;
+  content: '';
+  display: block
+}
+.layout-169:after {
+  padding-top: 56.25%;
+  content: '';
+  display: block
+}
+
+.layout-100:after {
+  padding-top: 100%;
+  content: '';
+  display: block
+}
+.layout-169,.layout-43,.layout-52 {
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden
+}
+
+.layout-43:after {
+  padding-top: 75%;
+  content: '';
+  display: block
+}
+
+.layout-card {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: 0
+}
+
+.pr {
+  position: relative;
+}
+
+.pa {
+  position: absolute;
+}
+
+.white-color {
+  color: #fff;
+}
+
+.transform {
+  -webkit-transition: all .3s!important;
+  -moz-transition: all .3s!important;
+  -o-transition: all .3s;
+  -ms-transition: all .3s;
+  transition: all .3s!important
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.pt-1 {
+  padding-top: .5rem;
+}
+
+.loading {
+  .self-center();
+}
