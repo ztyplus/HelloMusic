@@ -1,14 +1,11 @@
 <template>
-  <!-- <svg class="icon" aria-hidden="true" :style="{'color': 'rgb(255 246 246 / 68%)','font-size': '25px'}">
-    <use :xlink:href="'#icon-houtaishangpinguanli'"></use>
-  </svg> -->
   <svg class="icon" aria-hidden="true">
-    <use :xlink:href="'#icon-' + props.icon"></use>
+    <use :xlink:href="'#' + props.name"></use>
   </svg>
 </template>
 <script setup>
 const props = defineProps({
-  icon: {
+  name: {
     type: String,
     require: true
   },

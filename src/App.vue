@@ -1,61 +1,46 @@
 <template>
-  <div v-if="state" v-loading="state.curSong.name === null" class="container">
-    <Svg icon="houtaishangpinguanli" size="25px" />
-    <div class="card-top text-center">
-      <SongDisc :imgUrl="state.curSong.pic_url" :isLoading="state.isLoading" />
-      <div class="flex-center pt-1 ">
-        <h3 class="white-color song-name">{{ state.curSong.name }}</h3>
-        <span class="white-color">&nbsp;</span>
-        <p class="singer"><span v-for="(item,index) in state.curSong.artist" :key="index">{{ item }}&nbsp;&nbsp;</span> </p>
+    <div v-loading="music.state.curSong.name === null" class="container">
+      <Layout v-if="music.state.curSong.name !== null" />
+      <div class="main-bg transform" :style="{'background-image': 'url('+(music.state.curSong.pic_url ? music.state.curSong.pic_url : '')+')'}" :class="music.state.isLoading ? 'hide' : 'show'">
+        <img @load="stopLoading" :src="music.state.curSong.pic_url">
       </div>
     </div>
-    <div class="flex-center">
-      <Control />
-    </div>
-    <div class="main-bg transform" :style="{'background-image': 'url('+(state.curSong.pic_url ? state.curSong.pic_url : '')+')'}" :class="state.isLoading ? 'hide' : 'show'">
-      <img @load="stopLoading" :src="state.curSong.pic_url">
-    </div>
-  </div>
+    <Audio />
   <BackStyle />
+  <button class="bgstyle" @click="changeTheme"></button>
 </template>
 
 <script setup>
-import initMusic from "./api/initMusic"
-import BackStyle from "./components/BackStyle.vue"
-import SongDisc from "./components/SongDisc.vue"
-import Control from "./components/Control.vue"
-import Svg from "./components/Svg.vue"
-import { reactive } from "vue";
-  const state = reactive({
-    musit_list:[],
-    curSong: {
-      name: null,
-      artist: [],
-      pic_url: null
-    },
-    playInfo: null,
-    isLoading: true,
-    backTtyle: null
-  })
+  import Audio from "./components/Audio.vue"
+  import BackStyle from "./components/BackStyle.vue"
+  import Layout from "./views/Layout.vue"
+  import { useStore } from "./store/music"
+  import initMusic from "./api/initMusic"
+  import {changeTheme } from "./store/theme"
 
-    const stopLoading = () => {
-      state.isLoading = false
-    }
 
-    initMusic(state).initData();
-    
+  let music = useStore()
+  initMusic(music).initData();
+
+  const stopLoading = () => {
+    music.state.isLoading = false
+  }
+
 </script>
 
 <style lang="less">
-@import "./assets/css/style.less";
 body {
   background-attachment: fixed;
   background-size: cover;
   height: 100vh;
 }
 #app {
-  .flex-center();
-  .wh-100();
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 .icon {
     width: 1em; height: 1em;
@@ -63,28 +48,25 @@ body {
     fill: currentColor;
     overflow: hidden;
 }
-.loadbox {
-  .wh-100();
+.bgstyle {
+  z-index: 10;
+  right: 20px;
+  bottom: 20px;
   position: absolute;
-  top: 0;
-  left: 0;
-  background: rgb(255 255 255 / 70%);
-  z-index: 90;
-}
-
-.main-bg {
-  .mainbg();
-  img {
-    display: none;
-  }
-}
-.card-top {
-  padding-top: 15px;
+  background: none;
+  cursor: pointer;
+  border: none;
+  z-index: 99;
+  height: 50px;
+  width: 50px;
+  background-image: url("./assets/images/windmill.svg");
 }
 
 .container {
-  .br();
-  .blur-bg();
+  border-radius: 10px;
+  backdrop-filter: blur(8px) saturate(150%);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  background-color: rgba(255, 255, 255, 0.25);
   position: relative;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   width: 95%;
@@ -94,14 +76,33 @@ body {
   overflow: hidden;
   padding: 1rem;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
-
-.singer {
-  font-size: 14px;
-  color: #eee;
-  span {
-    vertical-align: -2px;
+.main-bg {
+  position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    inset: 0px;
+    filter: blur(5px);
+    opacity: 0.2 !important;
+  img {
+    display: none;
   }
 }
+.loadbox {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 90;
+}
+
 </style>
 

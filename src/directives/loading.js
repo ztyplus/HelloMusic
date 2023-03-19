@@ -1,6 +1,5 @@
 // export default {
 //   mounted(el, binding) {
-//     console.log("binding: ", binding);
 //     // 创建加载动画到el元素内部
 //   },
 
@@ -20,7 +19,7 @@ export default function (el, binding) {
     if (curImg == null) {
       const loadBox = document.createElement("div");
       const loadImg = document.createElement("img");
-      loadBox.className = "loadbox";
+      loadBox.className = "loadbox flex-center";
       loadImg.className = "loading";
       loadImg.src = loadingUrl;
       loadBox.appendChild(loadImg);

@@ -2,8 +2,8 @@
 <g transform="translate(694,540) scale(1,1) translate(-694,-540)"><defs>
 <linearGradient id="lg-0.08944584269433764" x1="0" x2="0" y1="0" y2="1">
   <stop stop-color="#ff00ff" offset="0.3"></stop>
-  <stop stop-color="#00ffff" offset="0.6499999999999999"></stop>
-  <stop stop-color="#00ffff" offset="1"></stop>
+  <stop stop-color="#2997f7" offset="0.6499999999999999"></stop>
+  <stop stop-color="#2997f7" offset="1"></stop>
 </linearGradient>
 <linearGradient id="fg-lg-0.08944584269433764" x1="0" x2="0" y1="0" y2="1">
   <stop stop-color="#ff00ff" stop-opacity="1" offset="0.3"></stop>

@@ -55,6 +55,14 @@ class helper {
       storage: (key) => this.clearStorage(key),
       session: (key) => this.clearSession(key),
     };
+
+    // 链式操作 time 属性
+    this.time = {
+      nature: (timestamp, type) => this.natureTime(timestamp, type),
+      to: {
+        date: (unixTime, type) => this.timeToDate(unixTime, type),
+      },
+    };
   }
 
   /**
@@ -505,6 +513,57 @@ class helper {
     }
 
     return result;
+  }
+
+  /**
+   * @name 人性化时间
+   * @param {number} timestamp 时间戳
+   * @return {string} result
+   */
+  natureTime(timestamp) {
+    const length = timestamp.toString().length;
+    const date =
+      length === 13 ? new Date(timestamp) : new Date(timestamp * 1000);
+    const now = new Date();
+    const diff = Math.floor((now - date) / 1000);
+
+    if (diff < 60) {
+      return "刚刚";
+    } else if (diff < 3600) {
+      return `${Math.floor(diff / 60)} 分钟前`;
+    } else if (diff < 86400) {
+      return `${Math.floor(diff / 3600)} 小时前`;
+    } else if (diff < 604800) {
+      return `${Math.floor(diff / 86400)} 天前`;
+    } else {
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      return `${year}-${month.toString().padStart(2, "0")}-${day
+        .toString()
+        .padStart(2, "0")}`;
+    }
+  }
+
+  /**
+   * @name 时间戳转日期格式
+   * @param {number} unixTime 时间戳
+   */
+  timeToDate(timestamp) {
+    const length = timestamp.toString().length;
+    const date =
+      length === 13 ? new Date(timestamp) : new Date(timestamp * 1000);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const second = date.getSeconds();
+    return `${year}-${month.toString().padStart(2, "0")}-${day
+      .toString()
+      .padStart(2, "0")} ${hour.toString().padStart(2, "0")}:${minute
+      .toString()
+      .padStart(2, "0")}:${second.toString().padStart(2, "0")}`;
   }
 }
 

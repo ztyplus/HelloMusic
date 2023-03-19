@@ -1,39 +1,35 @@
 <template>
-  <div class="body-bg">
-    <div>{{ style }}</div>
-    <button>
-      <Svg icon="fengche" size="30px" />
-    </button>
-  </div>
+  <div class="body-bg" :style="{'background-image': theme.state.background}"></div>
+  <div class="overlay"></div>
 </template>
 
 <script setup>
-import Svg from "../components/Svg.vue"
-const props = defineProps({
-  style: {
-    type: Object
-  }
-})
+import { useStore } from "../store/theme"
 
+let theme = useStore()
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .body-bg {
-  background-image: url("../assets/images/background/bg2.svg"); 
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: 9;
+  position: fixed;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-button {
-  right: 20px;
-  bottom: 20px;
-  position: absolute;
-  background: none;
-  cursor: pointer;
-  border: none;
-  z-index: 99;
+.overlay {
+  position: fixed;
+  top: 0px;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 15%, rgba(255, 255, 255, 0) 100%);
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
 }
+
 </style>

@@ -1,14 +1,13 @@
 <template>
-  <div class="pr disc-card flex-center"> 
-    <!-- <ImageLoader :src="imgUrl" /> -->
-    <div class="lyric-box flex-center">
+  <div class="pr disc-card"> 
+    <div class="lyric-box">
       <Lyric />
     </div>
     <div class="song-disc pr">
       <div class="song-turn wh-100">
         <div class="song-rollwrap">
-          <div class="song-img a-circling z-pause"><img :class="isLoading ? 'hide' : 'show'" class="u-img transform wh-100" alt="song-img" :src="imgUrl"></div>
-          <div class="song-lgour"><div class="song-light a-circling z-pause"></div></div>
+          <div :class="{'z-pause': !(audio.canPlay && audio.isPlaying)}" class="song-img a-circling"><img :class="isLoading ? 'hide' : 'show'" class="u-img transform wh-100" alt="song-img" :src="imgUrl"></div>
+          <div class="song-lgour"><div :class="{'z-pause':!(audio.canPlay && audio.isPlaying)}" class="song-light a-circling"></div></div>
         </div>
       </div>
       <span class="song-plybtn"></span>
@@ -17,8 +16,12 @@
 </template>
 
 <script setup>
-  // import ImageLoader from "./ImageLoader.vue"
   import Lyric from "../components/Lyric.vue"
+  import { useStore } from "../store/audio"
+
+  const audio = useStore();
+
+
   const props = defineProps({
     imgUrl: String,
     isLoading: Boolean
@@ -35,29 +38,23 @@
 }
 .lyric-box {
   overflow: hidden;
-  padding: .5rem;
+  padding: 2px 0;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  height: 155px;
+  height: 154px;
   width: 600px;
   max-width: 90%;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(8px) saturate(150%);
+  background: rgb(255 255 255 / 20%);
   transform: translateX(42.5px);
   flex-shrink: 0;
 }
 
-// .song-disc:after {
-//   content: " ";
-//   position: absolute;
-//   top: 10px;
-//   left: 107px;
-//   z-index: 5;
-//   width: 84px;
-//   height: 122px;
-//   background: url("../assets/images/needle-ab.png") no-repeat;
-//   background-size: contain;
-// }
+.disc-card {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
 
 .song-turn:before {
   content: " ";
@@ -104,13 +101,13 @@
 
 .song-plybtn {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 5px;
+    height: 5px;
     left: 50%;
     top: 50%;
     background: #fff;
     border-radius: 50%;
-    box-shadow: 0 0 0 10px hsla(0, 0, 0, 0.65);
+    box-shadow: 0 0 0 5px hsla(0, 0, 0, 0.65);
     -webkit-transform: translate(-50%,-50%);
     -ms-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
@@ -120,25 +117,37 @@
 }
 
 @media(max-width: 768px) {
+  .disc-card {
+    display: block;
+    position: relative;
+    height: 240px;
+  }
   .song-disc {
-    width: 120px;
-    height: 120px;
-    transform: translateX(-30px);
+    position: absolute;
+    width: 90px;
+    top: 5px;
+    right: 50%;
+    height: 90px;
+    transform: translateX(50%);
+  }
+  .lyric {
+    margin-top: 90px;
   }
   .song-plybtn {
-    width: 30px;
-    height: 30px;
+    width: 10px;
+    height: 10px;
   }
   .song-rollwrap {
-    width: 100px;
-    height: 100px;
-    margin: -50px 0px 0px -50px;
+    width: 80px;
+    height: 80px;
+    margin: -40px 0px 0px -40px;
   }
   .lyric-box {
-    height: 110px;
-    width: calc(100% - 50px);
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
     max-width: 100%;
-    transform: translateX(30px);
+    transform: translateX(0);
     flex-shrink: 0;
   }
 }

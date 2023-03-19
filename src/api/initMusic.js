@@ -2,80 +2,87 @@ import { GET } from "../utils/http";
 import Helper from "../utils/helper";
 import playlist from "../../public/music.json";
 
-export default function initMusic(state) {
-  const sessionMusic = Helper.get.session("musicList", "playlist");
-  const curMusic = Helper.get.storage("curMusic");
+export default function initMusic(music) {
+  const storageMusic = Helper.get.storage("musicList", "playlist");
+  const curSong = Helper.get.storage("playinfo", "curSong");
+  const musicIndex = Helper.get.storage("musicIndex");
+
+  let default_song;
 
   const initData = () => {
-    if (sessionMusic != "expire" && sessionMusic != false) {
-      state.musit_list = Object.values(sessionMusic);
+    if (storageMusic != "expire" && storageMusic != false) {
+      initList(Object.values(storageMusic));
       initSong();
     } else {
       getMusic();
     }
   };
 
+  const initList = (play_list) => {
+    let listIndex;
+    let songIndex;
+    if (musicIndex !== false) {
+      listIndex = musicIndex.list;
+      songIndex = musicIndex.song;
+    } else {
+      listIndex = Helper.get.random.num(0, play_list.length - 1);
+      songIndex = 0;
+    }
+    music.state.song_index = songIndex;
+    music.state.list_index = listIndex;
+    music.state.current_list = play_list[listIndex].song_list;
+    Helper.set.storage("musicIndex", { list: listIndex, song: songIndex });
+
+    default_song = play_list[listIndex].song_list[songIndex];
+  };
+
   const getMusic = () => {
     let promise_array = [];
+    let musit_list = [];
     playlist["play_list"].forEach((el) => {
       promise_array.push(
         GET("music/playlist", { id: el.id, server: el.type }).then((res) => {
           if (res.code === 200) {
-            state.musit_list.push(res.data);
+            musit_list.push(res.data);
           }
         })
       );
     });
     Promise.allSettled(promise_array).then(() => {
-      Helper.set.session("musicList", "playlist", state.musit_list);
+      Helper.set.storage("musicList", "playlist", musit_list);
       // Helper.set.storage("musicList", "playlist", { time: 7200 });
+      initList(musit_list);
       initSong();
     });
   };
 
-  const getList = (id, type) => {
-    GET("music/playlist", { id, server: type }).then((res) => {
+  const getSong = () => {
+    GET("music/song", {
+      id: default_song.id,
+      server: default_song.source,
+    }).then((res) => {
       if (res.code === 200) {
-        state.musit_list.push(res.data);
+        music.state.curSong = res.data;
+        getPlayUrl(music.state.curSong.id, music.state.curSong.source);
       }
     });
-  };
-
-  const getSong = () => {
-    const listIndex = Helper.get.random.num(0, state.musit_list.length - 1);
-    const songLength = state.musit_list[listIndex].song_list.length;
-    const songIndex = Helper.get.random.num(0, songLength - 1);
-    let defaultSong = state.musit_list[listIndex]["song_list"][songIndex];
-
-    GET("music/song", { id: defaultSong.id, server: defaultSong.source }).then(
-      (res) => {
-        if (res.code === 200) {
-          state.curSong = res.data;
-          // Helper.set.storage("curMusic", res.data);
-        }
-      }
-    );
   };
 
   const getPlayUrl = (id, type) => {
     GET("music/url", { id, server: type }).then((res) => {
       if (res.code === 200) {
-        state.playInfo = res.data;
+        music.state.play_info = res.data;
       }
     });
   };
 
-  const initSong = () => {
-    if (curMusic != "expire" && curMusic != false) {
-      state.curSong = curMusic;
+  const initSong = (default_song) => {
+    if (curSong != "expire" && curSong != false) {
+      music.state.curSong = curSong;
+      getPlayUrl(music.state.curSong.id, music.state.curSong.source);
     } else {
-      getSong();
+      getSong(default_song);
     }
-    // getPlayUrl(id, type);
-  };
-
-  const getRandom = (min, max) => {
-    return Math.floor(Math.random() * max + min);
   };
 
   return {
