@@ -1,31 +1,38 @@
 <template>
-    <div v-loading="music.state.curSong.name === null" class="container">
-      <Layout v-if="music.state.curSong.name !== null" />
-      <div class="main-bg transform" :style="{'background-image': 'url('+(music.state.curSong.pic_url ? music.state.curSong.pic_url : '')+')'}" :class="music.state.isLoading ? 'hide' : 'show'">
-        <img @load="stopLoading" :src="music.state.curSong.pic_url">
-      </div>
+  <div v-loading="music.state.curSong.name === null" class="container">
+    <Layout v-if="music.state.curSong.name !== null" />
+    <div
+      class="main-bg transform"
+      :style="{
+        'background-image':
+          'url(' +
+          (music.state.curSong.pic_url ? music.state.curSong.pic_url : '') +
+          ')',
+      }"
+      :class="music.state.isLoading ? 'hide' : 'show'"
+    >
+      <img @load="stopLoading" :src="music.state.curSong.pic_url" />
     </div>
-    <Audio />
+  </div>
+  <Audio />
   <BackStyle />
   <button class="bgstyle" @click="changeTheme"></button>
 </template>
 
 <script setup>
-  import Audio from "./components/Audio.vue"
-  import BackStyle from "./components/BackStyle.vue"
-  import Layout from "./views/Layout.vue"
-  import { useStore } from "./store/music"
-  import initMusic from "./api/initMusic"
-  import {changeTheme } from "./store/theme"
+import Audio from "./components/Audio.vue";
+import BackStyle from "./components/BackStyle.vue";
+import Layout from "./views/Layout.vue";
+import { useStore } from "./store/music";
+import initMusic from "./api/initMusic";
+import { changeTheme } from "./store/theme";
 
+let music = useStore();
+initMusic(music).initData();
 
-  let music = useStore()
-  initMusic(music).initData();
-
-  const stopLoading = () => {
-    music.state.isLoading = false
-  }
-
+const stopLoading = () => {
+  music.state.isLoading = false;
+};
 </script>
 
 <style lang="less">
@@ -43,10 +50,11 @@ body {
   height: 100%;
 }
 .icon {
-    width: 1em; height: 1em;
-    vertical-align: -0.15em;
-    fill: currentColor;
-    overflow: hidden;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
 .bgstyle {
   z-index: 10;
@@ -82,15 +90,15 @@ body {
 }
 .main-bg {
   position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    inset: 0px;
-    filter: blur(5px);
-    opacity: 0.2 !important;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  inset: 0px;
+  filter: blur(5px);
+  opacity: 0.2 !important;
   img {
     display: none;
   }
@@ -103,6 +111,4 @@ body {
   left: 0;
   z-index: 90;
 }
-
 </style>
-
