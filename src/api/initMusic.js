@@ -1,6 +1,5 @@
 import { GET } from "../utils/http";
 import Helper from "../utils/helper";
-import playlist from "../../public/music.json";
 
 export default function initMusic(music) {
   const storageMusic = Helper.get.storage("musicList", "playlist");
@@ -39,7 +38,7 @@ export default function initMusic(music) {
   const getMusic = () => {
     let promise_array = [];
     let musit_list = [];
-    playlist["play_list"].forEach((el) => {
+    play_list.forEach((el) => {
       promise_array.push(
         GET("music/playlist", { id: el.id, server: el.type }).then((res) => {
           if (res.code === 200) {
